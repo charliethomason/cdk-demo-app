@@ -5,3 +5,8 @@ Vue demo app that uses [Uptake's Component Development Kit](http://cdk.platform.
 * CDK Documentation: [cdk.platform.uptake.com](http://cdk.platform.uptake.com)
 * Design System Documentation: [designsystem.platform.uptake.com](https://designsystem.platform.uptake.com)
 * CDK and Design System packages on NPM: [npmjs.com/~uptake][https://www.npmjs.com/~uptake]
+
+This demo also uses the following:
+
+* [Vuex](https://vuex.vuejs.org/)
+* [VueRouter](https://router.vuejs.org/)
