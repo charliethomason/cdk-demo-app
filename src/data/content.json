@@ -1,0 +1,47 @@
+{
+  "header": {
+    "productName": "CDK Demo App",
+    "appSwitcherHeader": "Documentation",
+    "appSwitcherItems": [
+      {
+        "buttonText": "Charlie Thomason Code Demos",
+        "active": true,
+        "linkURL": "http://charliethomason.github.io/code/",
+        "initials": "CT"
+      },
+      {
+        "buttonText": "Uptake Design System",
+        "linkURL": "https://designsystem.platform.uptake.com/",
+        "target": "_blank",
+        "initials": "DS"
+      },
+      {
+        "buttonText": "Uptake CDK",
+        "linkURL": "https://cdk.platform.uptake.com/",
+        "target": "_blank",
+        "initials": "UP"
+      }
+    ]
+  },
+  "sideNav": {
+    "initialItems": [
+      {
+        "name": "Nav 1",
+        "children": [
+          {
+            "name": "Nav 1A",
+            "url": "."
+          },
+          {
+            "name": "Nav 1B",
+            "url": "."
+          }
+        ]
+      },
+      {
+        "name": "Nav 2",
+        "url": "."
+      }
+    ]
+  }
+}
