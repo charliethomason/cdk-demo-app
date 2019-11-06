@@ -18,6 +18,28 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'compressed'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(gif|ttf|eot|png|jpg|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
