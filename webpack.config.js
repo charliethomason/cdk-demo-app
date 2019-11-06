@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -47,7 +48,10 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
         template: 'index.html'
-    })
+    }),
+    new CopyPlugin([
+      { from: 'src/data/', to: 'data/' }
+    ])
   ],
   devServer: {
     contentBase: __dirname + '/dist',
