@@ -30,11 +30,11 @@
         "children": [
           {
             "name": "Nav 1A",
-            "url": "."
+            "url": "/#/"
           },
           {
             "name": "Nav 1B",
-            "url": "."
+            "url": "/#/cards"
           }
         ]
       },

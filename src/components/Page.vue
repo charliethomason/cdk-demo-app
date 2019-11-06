@@ -3,6 +3,9 @@
         <cdk-global-header v-bind="headerProps" />
         <div class="demo-wrapper">
             <cdk-side-nav v-bind="sideNavProps" />
+            <div class="demo-content">
+                <router-view />
+            </div>
         </div>
     </main>
 </template>
@@ -43,6 +46,7 @@ export default {
                 initialItems
             } = this.sideNav;
             return {
+                currentPath: `/#${this.$route.path}`,
                 initialItems
             };
         }
