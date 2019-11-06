@@ -56,7 +56,7 @@ export default {
             fetch('../data/movies.json')
                 .then(response => response.json())
                 .then(movieData => {
-                    this.$store.commit('setMovieData', movieData);
+                    this.$store.commit('setMovieRows', movieData);
                 })
                 .catch(error => {
                     console.error(error);

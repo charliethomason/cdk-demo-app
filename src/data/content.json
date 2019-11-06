@@ -43,5 +43,13 @@
         "url": "."
       }
     ]
+  },
+  "table": {
+    "fixedHeader": true,
+    "affix": 48,
+    "affixThreshold": 48,
+    "pinned": true,
+    "resizeable": true,
+    "multiSort": true
   }
 }
