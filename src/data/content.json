@@ -46,8 +46,8 @@
   },
   "table": {
     "fixedHeader": true,
-    "affix": 48,
-    "affixThreshold": 48,
+    "affix": 96,
+    "affixThreshold": 96,
     "pinned": true,
     "resizeable": true,
     "multiSort": true

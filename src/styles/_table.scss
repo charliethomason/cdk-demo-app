@@ -1,4 +1,17 @@
 .demo-table-wrapper {
     height: 100%;
+}
+.demo-table-menu {
+    align-items: center;
+    display: flex;
+    height: 48px;
+    padding: 0 18px;
+    
+    .up-ds-filters .up-ds-data-visualization-container {
+        z-index: 3;
+    }
+}
+.demo-table-scroll {
+    height: 100%;
     overflow: auto;
 }
