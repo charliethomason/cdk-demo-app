@@ -19,7 +19,6 @@ export default new Vuex.Store({
             filters: [
                 {
                     component: 'cdkPicklistField',
-                    defaultReset: [],
                     props: {
                         label: 'Genre',
                         name: 'genre',
@@ -28,12 +27,19 @@ export default new Vuex.Store({
                         picklistOptions: []
                     }
                 }
-            ]
+            ],
+            rowSize: 20
         }
     },
     getters: {
-        movieSample: state => {
-            return state.movies.rows.slice(0, 20);
+        movieSample: ({movies}) => {
+            const selectedFilter = movies.filters[0].props.value.map(({value}) => value);
+            const filteredMovies = selectedFilter.length
+                ? movies.rows.filter(({data}) => data.genres.value.indexOf(selectedFilter[0]) !== -1)
+                : movies.rows;
+            return movies.rowSize
+                ? filteredMovies.slice(0, movies.rowSize)
+                : filteredMovies;
         },
         movieRows: (state, getters) => {
             const fields = state.movies.sortMethods.map(method => `data.${method.field}.value`);

@@ -32,8 +32,6 @@ const setMovieRows = (state, movieData) => {
     state.movies.rows = movieRowReducer(movieData, state.movies.headers);
     const movieOptions = movieFilterReducer(movieData);
     state.movies.filters[0].props.picklistOptions = movieOptions;
-    state.movies.filters[0].props.value = [movieOptions[0]];
-    state.movies.filters[0].defaultReset = [movieOptions[0]];
 };
 const updateMovieSort = (state, sortMethods) => {
     state.movies.sortMethods = sortMethods;
@@ -41,9 +39,13 @@ const updateMovieSort = (state, sortMethods) => {
 const updateFilters = (state, filters) => {
     state.movies.filters = filters;
 };
+const updateRows = (state, rows) => {
+    state.movies.rowSize = rows;
+}
 
 export default {
     setMovieRows,
     updateMovieSort,
-    updateFilters
+    updateFilters,
+    updateRows
 };
