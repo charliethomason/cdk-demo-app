@@ -8,7 +8,15 @@ body {
     position: relative;
 }
 
+.up-ds-side-nav {
+    z-index: 2;
+}
+
 .demo-content {
     height: 100%;
-    padding-left: 284px;
+    padding-left: 64px;
+
+    &--pinned {
+        padding-left: 284px;
+    }
 }

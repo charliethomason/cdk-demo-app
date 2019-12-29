@@ -42,11 +42,15 @@ const updateFilters = (state, filters) => {
 const updatePagination = (state, value) => {
     state.movies.rowSize = value.limit;
     state.movies.page = value.page;
+};
+const updatePinned = (state, isPinned) => {
+    state.isPinned = isPinned;
 }
 
 export default {
     setMovieRows,
     updateMovieSort,
     updateFilters,
-    updatePagination
+    updatePagination,
+    updatePinned
 };

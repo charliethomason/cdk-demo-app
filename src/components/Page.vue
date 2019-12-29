@@ -2,8 +2,11 @@
     <main>
         <cdk-global-header v-bind="headerProps" />
         <div class="demo-wrapper">
-            <cdk-side-nav v-bind="sideNavProps" />
-            <div class="demo-content">
+            <cdk-side-nav
+                v-bind="sideNavProps"
+                @update-pinned="updatePinned"
+            />
+            <div :class="contentClass">
                 <router-view />
             </div>
         </div>
@@ -11,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import cdkGlobalHeader from '@uptake/cdk-vue/cdkGlobalHeader';
 import cdkSideNav from '@uptake/cdk-vue/cdkSideNav';
 
@@ -29,6 +33,7 @@ export default {
         };
     },
     computed: {
+        ...mapState([ 'isPinned' ]),
         headerProps() {
             const {
                 productName,
@@ -45,15 +50,31 @@ export default {
             const {
                 initialItems
             } = this.sideNav;
+            const {
+                isPinned
+            } = this;
             return {
                 currentPath: `/#${this.$route.path}`,
-                initialItems
+                initialItems,
+                isPinned
             };
+        },
+        contentClass() {
+            return {
+                'demo-content': true,
+                'demo-content--pinned': this.isPinned
+            }
         }
     },
     methods: {
         getMovies() {
             this.$store.dispatch('fetchData');
+        },
+        updatePinned(isPinned) {
+            this.$store.commit('updatePinned', isPinned);
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 250);
         }
     },
     mounted() {

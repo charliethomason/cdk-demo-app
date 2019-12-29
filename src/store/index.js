@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        isPinned: true,
         movies: {
             rows: [],
             headers: [
