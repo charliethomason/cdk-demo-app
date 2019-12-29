@@ -21,17 +21,42 @@ const movieFilterReducer = (data) => {
         });
         return genres;
     }, []);
-    return allGenres.sort().map((value, id) => ({
+    const allYears = data.reduce((years, movie) => {
+        if (!years.includes(movie.year)) {
+            years.push(movie.year);
+        }
+        return years;
+    }, []);
+    const sortedGenres = allGenres.sort().map((value, id) => ({
         label: value,
         value,
         id
     }));
+    const sortedYears = allYears.sort().map((value, id) => ({
+        label: value.toString(),
+        value: value.toString(),
+        id
+    }));
+    return {
+        genres: sortedGenres,
+        years: sortedYears
+    }
 };
 
 const setMovieRows = (state, movieData) => {
     state.movies.rows = movieRowReducer(movieData, state.movies.headers);
-    const movieOptions = movieFilterReducer(movieData);
-    state.movies.filters[0].props.picklistOptions = movieOptions;
+    const { genres, years } = movieFilterReducer(movieData);
+    state.movies.filters[0].props.picklistOptions = genres;
+    state.movies.filters[1].props.picklistOptions = years;
+    state.tilesConfig[0].header.groupNumber = genres.length;
+    state.tilesConfig[0].tiles = genres.map(genre => ({
+        titleText: genre.label,
+        id: genre.id
+    }));
+    state.tilesConfig[1].tiles = years.map(year => ({
+        titleText: year.label,
+        id: year.id + 100
+    }));
 };
 const updateMovieSort = (state, sortMethods) => {
     state.movies.sortMethods = sortMethods;
@@ -45,12 +70,16 @@ const updatePagination = (state, value) => {
 };
 const updatePinned = (state, isPinned) => {
     state.isPinned = isPinned;
-}
+};
+const updateSelectedTile = (state, selectedId) => {
+    state.selectedTile = selectedId;
+};
 
 export default {
     setMovieRows,
     updateMovieSort,
     updateFilters,
     updatePagination,
-    updatePinned
+    updatePinned,
+    updateSelectedTile
 };

@@ -1,8 +1,9 @@
 import orderBy from 'lodash/orderBy';
 
 export default {
-    filters: ({movies }) => {
-        return movies.filters;
+    filters: ({ movies }) => {
+        const { filters } = movies;
+        return filters;
     },
     rowSize: ({ movies }) => {
         return movies.rowSize;
@@ -11,10 +12,15 @@ export default {
         return movies.page.index;
     },
     filteredMovies: ({ movies }) => {
-        const selectedFilter = movies.filters[0].props.value.map(({ value }) => value);
-        const filteredMovies = selectedFilter.length
-            ? movies.rows.filter(({ data }) => data.genres.value.indexOf(selectedFilter[0]) !== -1)
-            : movies.rows;
+        const selectedGenre = movies.filters[0].props.value.map(({ value }) => value);
+        const selectedYear = movies.filters[1].props.value.map(({ value }) => value);
+        let filteredMovies = movies.rows;
+        if (selectedGenre.length) {
+            filteredMovies = filteredMovies.filter( ({ data }) => data.genres.value.indexOf(selectedGenre[0]) !== -1);
+        }
+        if (selectedYear.length) {
+            filteredMovies = filteredMovies.filter( ({ data }) => data.year.value.toString() === selectedYear[0] );
+        }
         return filteredMovies;
     },
     totalRows: ({ movies }, getters) => {
@@ -28,5 +34,11 @@ export default {
         const sortOrders = movies.sortMethods.map(method => method.sortOrder);
         const sortedFilteredMovies = orderBy(filteredMovies, sortFields, sortOrders);
         return sortedFilteredMovies.slice(sliceStart, sliceEnd);
+    },
+    tilesConfig: ({ tilesConfig }) => {
+        return tilesConfig;
+    },
+    selectedTile: ({ selectedTile }) => {
+        return selectedTile;
     }
 };

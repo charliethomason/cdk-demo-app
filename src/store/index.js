@@ -30,6 +30,18 @@ export default new Vuex.Store({
                     props: {
                         label: 'Genre',
                         name: 'genre',
+                        placeholder: 'Select one',
+                        singleSelect: true,
+                        value: [],
+                        picklistOptions: []
+                    }
+                },
+                {
+                    component: 'cdkPicklistField',
+                    props: {
+                        label: 'Year',
+                        name: 'year',
+                        placeholder: 'Select one',
                         singleSelect: true,
                         value: [],
                         picklistOptions: []
@@ -41,7 +53,30 @@ export default new Vuex.Store({
                 label: 1,
                 index: 0
             }
-        }
+        },
+        tilesConfig: [
+            {
+                header: {
+                    groupName: 'Genres',
+                    groupNumber: 0,
+                    badgeType: 'symbol',
+                    badgeColor: '#0ACD72',
+                    collapsed: false
+                },
+                tiles: []
+            },
+            {
+                header: {
+                    groupName: 'Years',
+                    groupNumber: 10,
+                    badgeType: 'symbol',
+                    badgeColor: '#c079ff',
+                    collapsed: true
+                },
+                tiles: []
+            }
+        ],
+        selectedTile: 0
     },
     getters,
     mutations,
