@@ -39,13 +39,14 @@ const updateMovieSort = (state, sortMethods) => {
 const updateFilters = (state, filters) => {
     state.movies.filters = filters;
 };
-const updateRows = (state, rows) => {
-    state.movies.rowSize = rows;
+const updatePagination = (state, value) => {
+    state.movies.rowSize = value.limit;
+    state.movies.page = value.page;
 }
 
 export default {
     setMovieRows,
     updateMovieSort,
     updateFilters,
-    updateRows
+    updatePagination
 };

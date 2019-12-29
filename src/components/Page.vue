@@ -53,14 +53,7 @@ export default {
     },
     methods: {
         getMovies() {
-            fetch('../data/movies.json')
-                .then(response => response.json())
-                .then(movieData => {
-                    this.$store.commit('setMovieRows', movieData);
-                })
-                .catch(error => {
-                    console.error(error);
-                })
+            this.$store.dispatch('fetchData');
         }
     },
     mounted() {

@@ -5,9 +5,9 @@
                 :filters="filters"
                 @updated="updateFilters"
             />
-            <cdk-picklist-field
-                v-bind="picklist"
-                @input="updateRows"
+            <cdk-pagination
+                v-bind="pagination"
+                @page="updatePagination"
             />
         </div>
         <div class="demo-table-scroll" ref="tableWrap">
@@ -20,9 +20,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import cdkDataTable from '@uptake/cdk-vue/cdkDataTable';
 import cdkFilters from '@uptake/cdk-vue/cdkFilters';
-import cdkPicklistField from '@uptake/cdk-vue/cdkPicklistField';
+import cdkPagination from '@uptake/cdk-vue/cdkPagination';
 import { table } from '../data/content.json';
 
 export default {
@@ -30,41 +31,21 @@ export default {
     components: {
         cdkDataTable,
         cdkFilters,
-        cdkPicklistField
+        cdkPagination
     },
     data() {
         return {
-            picklistLabel: "Rows",
-            picklistOptions: [
-                { id: 20, label: '20', value: 20 },
-                { id: 50, label: '50', value: 50 },
-                { id: 100, label: '100', value: 100 },
-                { id: 200, label: 'All', value: null }
-            ],
-            picklistValue: [{ id: 20, label: '20', value: 20 }],
             scrollElement: null,
             table
         };
     },
     computed: {
-        filters() {
-            return this.$store.state.movies.filters;
-        },
-        picklist() {
-            const {
-                picklistLabel: label,
-                picklistValue: value,
-                picklistOptions
-            } = this;
-            return {
-                micro: true,
-                singleSelect: true,
-                horizontal: true,
-                label,
-                picklistOptions,
-                value
-            };
-        },
+        ...mapGetters([
+            'filters',
+            'totalRows',
+            'rowSize',
+            'page'
+        ]),
         tableProps() {
             const { headers } = this.$store.state.movies;
             const { movieRows: rows } = this.$store.getters;
@@ -75,6 +56,19 @@ export default {
                 scrollElement,
                 ...this.table
             };
+        },
+        pagination() {
+            const {
+                totalRows,
+                rowSize,
+                page
+            } = this;
+            return {
+                zeroIndex: true,
+                total: totalRows,
+                limit: rowSize,
+                page
+            };
         }
     },
     methods: {
@@ -84,8 +78,8 @@ export default {
         updateFilters(filters) {
             this.$store.commit('updateFilters', filters);
         },
-        updateRows(rows) {
-            this.$store.commit('updateRows', rows[0].value);
+        updatePagination(page) {
+            this.$store.commit('updatePagination', page);
         }
     },
     mounted() {

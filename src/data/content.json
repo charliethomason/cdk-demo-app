@@ -26,21 +26,23 @@
   "sideNav": {
     "initialItems": [
       {
-        "name": "Nav 1",
+        "name": "1980s Movies",
+        "iconPath": "icons/table.svg",
         "children": [
           {
-            "name": "Nav 1A",
+            "name": "Table View",
             "url": "/#/"
           },
           {
-            "name": "Nav 1B",
+            "name": "Card View",
             "url": "/#/cards"
           }
         ]
       },
       {
-        "name": "Nav 2",
-        "url": "."
+        "name": "Back to Code Demos",
+        "iconPath": "icons/person.svg",
+        "url": "http://charliethomason.github.io/code/"
       }
     ]
   },

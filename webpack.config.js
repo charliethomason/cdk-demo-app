@@ -50,7 +50,8 @@ module.exports = {
         template: 'index.html'
     }),
     new CopyPlugin([
-      { from: 'src/data/', to: 'data/' }
+      { from: 'src/data/', to: 'data/' },
+      { from: 'src/icons/', to: 'icons/' }
     ])
   ],
   devServer: {

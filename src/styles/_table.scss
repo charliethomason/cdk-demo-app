@@ -13,6 +13,6 @@
     }
 }
 .demo-table-scroll {
-    height: 100%;
+    height: calc(100% - 48px);
     overflow: auto;
 }
