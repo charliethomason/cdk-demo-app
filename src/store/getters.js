@@ -1,5 +1,13 @@
 import orderBy from 'lodash/orderBy';
 
+const filterMovies = (moviesArr, filterType, filterVal) => {
+    if (filterType === 'genre') {
+        return moviesArr.filter(({ data }) => data.genres.value.indexOf(filterVal) !== -1);
+    } else if (filterType === 'year') {
+        return moviesArr.filter(({ data }) => data.year.value.toString() === filterVal);
+    }
+};
+
 export default {
     filters: ({ movies }) => {
         const { filters } = movies;
@@ -16,10 +24,10 @@ export default {
         const selectedYear = movies.filters[1].props.value.map(({ value }) => value);
         let filteredMovies = movies.rows;
         if (selectedGenre.length) {
-            filteredMovies = filteredMovies.filter( ({ data }) => data.genres.value.indexOf(selectedGenre[0]) !== -1);
+            filteredMovies = filterMovies(filteredMovies, 'genre', selectedGenre[0]);
         }
         if (selectedYear.length) {
-            filteredMovies = filteredMovies.filter( ({ data }) => data.year.value.toString() === selectedYear[0] );
+            filteredMovies = filterMovies(filteredMovies, 'year', selectedYear[0]);
         }
         return filteredMovies;
     },
@@ -39,6 +47,13 @@ export default {
         return tilesConfig;
     },
     selectedTile: ({ selectedTile }) => {
-        return selectedTile;
+        return selectedTile.id;
+    },
+    totalFilmsForTile: state => {
+        const selectedTile = state.selectedTile.titleText;
+        const tileType = state.selectedTile.id
+            ? state.selectedTile.id.split('-')[0]
+            : 'genre';
+        return filterMovies(state.movies.rows, tileType, selectedTile);
     }
 };

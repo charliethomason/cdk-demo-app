@@ -51,12 +51,16 @@ const setMovieRows = (state, movieData) => {
     state.tilesConfig[0].header.groupNumber = genres.length;
     state.tilesConfig[0].tiles = genres.map(genre => ({
         titleText: genre.label,
-        id: genre.id
+        id: `genre-${genre.id}`
     }));
     state.tilesConfig[1].tiles = years.map(year => ({
         titleText: year.label,
-        id: year.id + 100
+        id: `year-${year.id}`
     }));
+    state.selectedTile = {
+        id: `genre-${genres[0].id}`,
+        titleText: genres[0].label
+    };
 };
 const updateMovieSort = (state, sortMethods) => {
     state.movies.sortMethods = sortMethods;
@@ -71,8 +75,8 @@ const updatePagination = (state, value) => {
 const updatePinned = (state, isPinned) => {
     state.isPinned = isPinned;
 };
-const updateSelectedTile = (state, selectedId) => {
-    state.selectedTile = selectedId;
+const updateSelectedTile = (state, selectedTile) => {
+    state.selectedTile = selectedTile;
 };
 
 export default {

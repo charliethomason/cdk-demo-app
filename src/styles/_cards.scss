@@ -1,4 +1,21 @@
 .demo-cards-wrapper {
+    display: flex;
     height: 100%;
-    overflow: auto;
+
+    .up-ds-tiles {
+        height: 100%;
+        overflow: auto;
+    }
+}
+.demo-cards-content {
+    flex-grow: 1;
+    padding: 20px;
+
+    .up-ds-card {
+        .up-ds-badge--icon {
+            line-height: 18px;
+            padding: 0 7px;
+            width: auto;
+        }
+    }
 }

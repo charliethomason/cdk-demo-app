@@ -76,7 +76,7 @@ export default new Vuex.Store({
                 tiles: []
             }
         ],
-        selectedTile: 0
+        selectedTile: {}
     },
     getters,
     mutations,
