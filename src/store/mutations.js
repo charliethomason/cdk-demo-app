@@ -78,6 +78,12 @@ const updatePinned = (state, isPinned) => {
 const updateSelectedTile = (state, selectedTile) => {
     state.selectedTile = selectedTile;
 };
+const updateOmdbLoading = (state, isLoading) => {
+    state.omdbLoading = isLoading;
+};
+const updateOmdbFilms = (state, data) => {
+    state.omdbFilms = data;
+};
 
 export default {
     setMovieRows,
@@ -85,5 +91,7 @@ export default {
     updateFilters,
     updatePagination,
     updatePinned,
-    updateSelectedTile
+    updateSelectedTile,
+    updateOmdbLoading,
+    updateOmdbFilms
 };

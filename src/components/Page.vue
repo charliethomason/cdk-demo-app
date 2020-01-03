@@ -1,6 +1,6 @@
 <template>
     <main>
-        <cdk-global-header v-bind="headerProps" />
+        <cdk-global-header class="demo-header" v-bind="headerProps" />
         <div class="demo-wrapper">
             <cdk-side-nav
                 v-bind="sideNavProps"

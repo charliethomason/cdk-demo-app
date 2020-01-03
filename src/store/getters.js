@@ -47,13 +47,21 @@ export default {
         return tilesConfig;
     },
     selectedTile: ({ selectedTile }) => {
-        return selectedTile.id;
+        return selectedTile;
     },
-    totalFilmsForTile: state => {
-        const selectedTile = state.selectedTile.titleText;
-        const tileType = state.selectedTile.id
-            ? state.selectedTile.id.split('-')[0]
+    tileType: ({ selectedTile }) => {
+        return selectedTile.id
+            ? selectedTile.id.split('-')[0]
             : 'genre';
+    },
+    totalFilmsForTile: (state, { tileType }) => {
+        const selectedTile = state.selectedTile.titleText;
         return filterMovies(state.movies.rows, tileType, selectedTile);
+    },
+    omdbLoading: ({ omdbLoading }) => {
+        return omdbLoading;
+    },
+    omdbFilms: ({ omdbFilms }) => {
+        return omdbFilms;
     }
 };

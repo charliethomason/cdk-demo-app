@@ -8,14 +8,46 @@
     }
 }
 .demo-cards-content {
-    flex-grow: 1;
+    flex: 1 1 0;
+    overflow-y: auto;
     padding: 20px;
 
     .up-ds-card {
+        margin-bottom: 20px;
+
         .up-ds-badge--icon {
             line-height: 18px;
             padding: 0 7px;
             width: auto;
+        }
+    }
+    
+    .omdb-card {
+        margin-bottom: 20px;
+    }
+
+    .film-info {
+        display: flex;
+
+        .film-poster {
+            flex: 1;
+            max-width: 125px;
+        }
+
+        img {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+
+        ul {
+            flex: 1;
+            list-style: disc outside;
+            padding-left: 30px;
+
+            li {
+                padding-bottom: 5px;
+            }
         }
     }
 }

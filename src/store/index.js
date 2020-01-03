@@ -76,7 +76,9 @@ export default new Vuex.Store({
                 tiles: []
             }
         ],
-        selectedTile: {}
+        selectedTile: {},
+        omdbLoading: true,
+        omdbFilms: []
     },
     getters,
     mutations,

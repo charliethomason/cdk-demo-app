@@ -14,6 +14,7 @@
             <cdk-data-table
                 v-bind="tableProps"
                 @header-container-click="headerClick"
+                @no-results-click="refreshTable"
             />
         </div>
     </div>
@@ -76,10 +77,20 @@ export default {
             this.$store.commit('updateMovieSort', sortMethods);
         },
         updateFilters(filters) {
+            this.$store.commit('updatePagination', {
+                limit: this.rowSize,
+                page: {
+                    index: 0,
+                    label: 1
+                }
+            });
             this.$store.commit('updateFilters', filters);
         },
         updatePagination(page) {
             this.$store.commit('updatePagination', page);
+        },
+        refreshTable() {
+            window.location.reload(false);
         }
     },
     mounted() {
