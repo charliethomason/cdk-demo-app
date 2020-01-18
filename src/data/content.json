@@ -31,11 +31,11 @@
         "children": [
           {
             "name": "Table View",
-            "url": "/#/"
+            "url": "/"
           },
           {
             "name": "Card View",
-            "url": "/#/cards"
+            "url": "/cards"
           }
         ]
       },

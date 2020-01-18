@@ -57,6 +57,7 @@ module.exports = {
   devServer: {
     contentBase: __dirname + '/dist',
     port: 9100,
-    open: true
+    open: true,
+    https: true
   }
 };

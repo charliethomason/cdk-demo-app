@@ -16,7 +16,8 @@
 <script>
 import { mapState } from 'vuex';
 import cdkGlobalHeader from '@uptake/cdk-vue/cdkGlobalHeader';
-import cdkSideNav from '@uptake/cdk-vue/cdkSideNav';
+
+import CdkSideNav from './SideNav/CdkSideNav.vue';
 
 import { header, sideNav } from '../data/content.json';
 
@@ -24,7 +25,7 @@ export default {
     name: 'Page',
     components: {
         cdkGlobalHeader,
-        cdkSideNav
+        CdkSideNav
     },
     data() {
         return {
@@ -41,6 +42,7 @@ export default {
                 appSwitcherItems
             } = this.header;
             return {
+                headerLink: '#/',
                 productName,
                 appSwitcherHeader,
                 appSwitcherItems
@@ -54,7 +56,7 @@ export default {
                 isPinned
             } = this;
             return {
-                currentPath: `/#${this.$route.path}`,
+                currentPath: this.$route.path,
                 initialItems,
                 isPinned
             };

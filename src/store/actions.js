@@ -1,6 +1,6 @@
 export default {
     fetchData({ commit }) {
-        fetch('../data/movies.json')
+        fetch('data/movies.json')
             .then(response => response.json())
             .then(movieData => {
                 commit('setMovieRows', movieData);
@@ -14,7 +14,7 @@ export default {
         let filmsFetched = 0;
         commit('updateOmdbLoading', true);
         topThree.forEach(film => {
-            fetch(`http://www.omdbapi.com/?apikey=d1723d1b&t=${film.t}&y=${film.y}`)
+            fetch(`//www.omdbapi.com/?apikey=d1723d1b&t=${film.t}&y=${film.y}`)
                 .then(response => response.json())
                 .then(filmData => {
                     filmsFetched++;
